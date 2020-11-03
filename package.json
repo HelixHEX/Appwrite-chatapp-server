@@ -1,0 +1,34 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "tsc -w",
+    "dev": "nodemon ./dist/index.js",
+    "start": "node ./dist/index.js",
+    "devRun": "concurrently --kill-others \"tsc -w\" \"node dist/index.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/babel__core": "^7.1.10",
+    "@types/cron": "^1.7.2",
+    "@types/express": "^4.17.8",
+    "@types/node": "^14.11.2",
+    "@types/node-fetch": "^2.5.7"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.18.2",
+    "cron": "^1.8.2",
+    "dotenv-safe": "^8.2.0",
+    "express": "^4.17.1",
+    "node-appwrite": "^1.1.0",
+    "node-fetch": "^2.6.1",
+    "reflect-metadata": "^0.1.13",
+    "ts-node": "^9.0.0",
+    "type-graphql": "^1.1.0",
+    "typescript": "^4.0.3"
+  }
+}
