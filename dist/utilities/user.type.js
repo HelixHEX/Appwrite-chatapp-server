@@ -9,30 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AllMessagesInput = exports.MessageInput = void 0;
+exports.Users = exports.User = void 0;
 const type_graphql_1 = require("type-graphql");
-let MessageInput = class MessageInput {
+let User = class User {
 };
 __decorate([
     type_graphql_1.Field(),
     __metadata("design:type", String)
-], MessageInput.prototype, "message", void 0);
+], User.prototype, "name", void 0);
 __decorate([
     type_graphql_1.Field(),
     __metadata("design:type", String)
-], MessageInput.prototype, "senderName", void 0);
-MessageInput = __decorate([
-    type_graphql_1.InputType()
-], MessageInput);
-exports.MessageInput = MessageInput;
-let AllMessagesInput = class AllMessagesInput {
+], User.prototype, "id", void 0);
+User = __decorate([
+    type_graphql_1.ObjectType()
+], User);
+exports.User = User;
+let Users = class Users {
 };
 __decorate([
-    type_graphql_1.Field(),
-    __metadata("design:type", Number)
-], AllMessagesInput.prototype, "offset", void 0);
-AllMessagesInput = __decorate([
-    type_graphql_1.InputType()
-], AllMessagesInput);
-exports.AllMessagesInput = AllMessagesInput;
-//# sourceMappingURL=MessageInput.js.map
+    type_graphql_1.Field(() => [User]),
+    __metadata("design:type", Array)
+], Users.prototype, "users", void 0);
+Users = __decorate([
+    type_graphql_1.ObjectType()
+], Users);
+exports.Users = Users;
+//# sourceMappingURL=user.type.js.map

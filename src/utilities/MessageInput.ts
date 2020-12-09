@@ -7,3 +7,9 @@ export class MessageInput {
   @Field()
   senderName: string;
 }
+
+@InputType()
+export class AllMessagesInput {
+  @Field()
+  offset: number;
+}
