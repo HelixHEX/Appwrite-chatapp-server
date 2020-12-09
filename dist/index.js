@@ -19,15 +19,16 @@ const cors_1 = __importDefault(require("cors"));
 const apollo_server_express_1 = require("apollo-server-express");
 const type_graphql_1 = require("type-graphql");
 const messages_1 = require("./resolvers/messages");
+const test_1 = require("./resolvers/test");
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     const app = express_1.default();
     app.use(cors_1.default({
-        origin: ["http://localhost:3000", "https://chatapplication.vercel.app", "https://appwritechatapp.netlify.app/"],
+        origin: ["http://192.168.1.219:3000/", "http://localhost:3000", "https://chatapplication.vercel.app", "https://appwritechatapp.netlify.app/"],
         credentials: true,
     }));
     const apolloServer = new apollo_server_express_1.ApolloServer({
         schema: yield type_graphql_1.buildSchema({
-            resolvers: [messages_1.MessageResolver],
+            resolvers: [messages_1.MessageResolver, test_1.TestResolver],
             validate: false,
         }),
         context: ({ req, res }) => ({ req, res }),

@@ -8,21 +8,21 @@ import cors from "cors";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
 import { MessageResolver } from "./resolvers/messages";
-
+import { TestResolver } from './resolvers/test'
 //appwrite
 const main = async () => {
   const app = express();
 
   app.use(
     cors({
-      origin: ["http://localhost:3000", "https://chatapplication.vercel.app", "https://appwritechatapp.netlify.app/"],
+      origin: ["http://192.168.1.219:3000/", "http://localhost:3000", "https://chatapplication.vercel.app", "https://appwritechatapp.netlify.app/"],
       credentials: true,
     })
   );
   //setup apollo server
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [MessageResolver],
+      resolvers: [MessageResolver, TestResolver],
       validate: false,
     }),
     context: ({ req, res }) => ({ req, res }),

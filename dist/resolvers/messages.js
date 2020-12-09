@@ -29,7 +29,7 @@ const sdk = require('node-appwrite');
 let client = new sdk.Client();
 let database = new sdk.Database(client);
 client.setEndpoint("http://localhost:8000/v1").setProject("5f95dd1177602").setKey("d3fbce616240b453fb70c802353367a4cfb482dd1d45f7cda8e63140bff12d9f246c854def609501aacc27fc7f107cb94cd989eb1d5c362da670bd532055a49cc45986e25a3ca776edecd49076ac9227ae4d0f1400d52d32744c3332b35d21bf86ee30bc955d823b8d7db1f4b59e65c84119328c3ba1fbd38950c2a5ac57bdc9");
-let collectionId = "5fa193d15f125";
+let collectionId = "5fa516ec7ce41";
 let MessageProp = class MessageProp {
 };
 __decorate([
@@ -71,7 +71,8 @@ let MessageResolver = class MessageResolver {
             const message = {
                 message: input.message,
                 senderName: input.senderName,
-                id: "default"
+                id: "default",
+                createdAt: ""
             };
             let promise = yield database.createDocument(collectionId, { id: message.id, message: message.message, senderName: message.senderName }, [], []);
             yield database.updateDocument(collectionId, promise.$id, { id: promise.$id });
@@ -84,7 +85,59 @@ let MessageResolver = class MessageResolver {
     allMessages() {
         return __awaiter(this, void 0, void 0, function* () {
             let promise = yield database.listDocuments(collectionId);
-            let messages = promise.documents;
+            let messages;
+            let limit;
+            if (parseInt(promise.sum) > 25) {
+                let queryOffset = promise.sum - 25;
+                limit = 25;
+                console.log(limit);
+                let newMessages = yield database.listDocuments(collectionId, [], queryOffset, 25);
+                messages = newMessages.documents;
+                return { messages };
+            }
+            console.log(promise.stum);
+            messages = promise.documents;
+            console.log("GET allmessages");
+            return { messages };
+        });
+    }
+    allMessagess() {
+        return __awaiter(this, void 0, void 0, function* () {
+            let promise = yield database.listDocuments(collectionId);
+            let messages;
+            let limit;
+            if (parseInt(promise.sum) > 25) {
+                let queryOffset = promise.sum - 25;
+                limit = 25;
+                console.log(limit);
+                let newMessages = yield database.listDocuments(collectionId, [], queryOffset, 25);
+                messages = newMessages.documents;
+                return { messages };
+            }
+            console.log(promise.stum);
+            messages = promise.documents;
+            console.log("GET allmessages");
+            return { messages };
+        });
+    }
+    test() {
+        return 'hi';
+    }
+    hi() {
+        return __awaiter(this, void 0, void 0, function* () {
+            let promise = yield database.listDocuments(collectionId);
+            let messages;
+            let limit;
+            if (parseInt(promise.sum) > 25) {
+                let queryOffset = promise.sum - 25;
+                limit = 25;
+                console.log(limit);
+                let newMessages = yield database.listDocuments(collectionId, [], queryOffset, 25);
+                messages = newMessages.documents;
+                return { messages };
+            }
+            console.log(promise.stum);
+            messages = promise.documents;
             console.log("GET allmessages");
             return { messages };
         });
@@ -111,6 +164,24 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], MessageResolver.prototype, "allMessages", null);
+__decorate([
+    type_graphql_1.Query(() => MessageResponse, { nullable: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], MessageResolver.prototype, "allMessagess", null);
+__decorate([
+    type_graphql_1.Query({ nullable: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", String)
+], MessageResolver.prototype, "test", null);
+__decorate([
+    type_graphql_1.Query(() => MessageResponse, { nullable: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], MessageResolver.prototype, "hi", null);
 MessageResolver = __decorate([
     type_graphql_1.Resolver(message_type_1.Message)
 ], MessageResolver);

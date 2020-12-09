@@ -9,30 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AllMessagesInput = exports.MessageInput = void 0;
+exports.OnlineUserInput = void 0;
 const type_graphql_1 = require("type-graphql");
-let MessageInput = class MessageInput {
+let OnlineUserInput = class OnlineUserInput {
 };
 __decorate([
     type_graphql_1.Field(),
     __metadata("design:type", String)
-], MessageInput.prototype, "message", void 0);
+], OnlineUserInput.prototype, "id", void 0);
 __decorate([
     type_graphql_1.Field(),
     __metadata("design:type", String)
-], MessageInput.prototype, "senderName", void 0);
-MessageInput = __decorate([
+], OnlineUserInput.prototype, "name", void 0);
+OnlineUserInput = __decorate([
     type_graphql_1.InputType()
-], MessageInput);
-exports.MessageInput = MessageInput;
-let AllMessagesInput = class AllMessagesInput {
-};
-__decorate([
-    type_graphql_1.Field(),
-    __metadata("design:type", Number)
-], AllMessagesInput.prototype, "offset", void 0);
-AllMessagesInput = __decorate([
-    type_graphql_1.InputType()
-], AllMessagesInput);
-exports.AllMessagesInput = AllMessagesInput;
-//# sourceMappingURL=MessageInput.js.map
+], OnlineUserInput);
+exports.OnlineUserInput = OnlineUserInput;
+//# sourceMappingURL=UserInput.js.map
